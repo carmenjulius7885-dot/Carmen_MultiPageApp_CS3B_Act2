@@ -1,99 +1,53 @@
 import streamlit as st
 
+# Page configuration
 st.set_page_config(
-    page_title="My Portfolio",
-    page_icon="🌐",
-    layout="wide",
-    initial_sidebar_state="expanded"
+    page_title="My Home App",
+    page_icon="🏠",
+    layout="wide"
 )
 
-st.markdown("""
-<style>
+st.sidebar.title("Navigation")
+page = st.sidebar.radio("Go to", ["Home", "About","Project","Skills", "Contact"])
 
-/* Background */
-.stApp {
-    background: linear-gradient(135deg, #dbeafe, #f0fdf4);
-    font-family: 'Segoe UI', sans-serif;
-}
+if page == "Home":
+    st.title("🏠 Welcome to My Streamlit App")
+    st.subheader("Your simple homepage layout")
 
-/* Force sidebar visible */
-section[data-testid="stSidebar"] {
-    display: block !important;
-}
+    st.write("""
+    This is your home page. You can customize this with:
+    - Charts 📊
+    - Data tables 📋
+    - Images 🖼️
+    - Interactive widgets 🎛️
+    """)
 
-/* Header */
-.header {
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
-    padding: 40px;
-    border-radius: 20px;
-    text-align: center;
-    color: white;
-    margin-bottom: 30px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-}
+    col1, col2, col3, col4 = st.columns(4)
 
-/* Glass cards */
-.glass {
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(10px);
-    padding: 25px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    transition: 0.3s;
-}
+    with col1:
+        st.info("📌 Feature 1")
 
-.glass:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-}
+    with col2:
+        st.success("🚀 Feature 2")
 
-/* Buttons */
-div.stButton > button {
-    height: 130px;
-    font-size: 17px;
-    font-weight: bold;
-    border-radius: 15px;
-    background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(5px);
-    border: none;
-}
+    with col3:
+        st.warning("⚡ Feature 3")
 
-div.stButton > button:hover {
-    background: #4facfe;
-    color: white;
-    transform: scale(1.05);
-    transition: 0.2s;
-}
+    with col4:
+        st.warning("⚡ Feature 4")
+        
+elif page == "About Me":
+    st.title("ℹ️ About Me")
+    st.write("This app is built using Streamlit.")
 
-</style>
-""", unsafe_allow_html=True)
+elif page == "Project":
+    st.title("ℹ️ Project")
+    st.write("This app is built using Streamlit.")
 
-st.markdown("""
-<div class="header">
-    <h1>🏠 Home</h1>
-    <p>✨ Discover my journey, skills, and creative work</p>
-</div>
-""", unsafe_allow_html=True)
+elif page == "Skills":
+    st.title("ℹ️ Skills")
+    st.write("This app is built using Streamlit.")
 
-st.markdown("### 🚀 Explore")
-
-col1, col2, col3, col4 = st.columns(4)
-
-with col1:
-    if st.button("👤\nAbout Me", use_container_width=True):
-        st.switch_page("pages/About.py")
-
-with col2:
-    if st.button("💼\nProjects", use_container_width=True):
-        st.switch_page("pages/Projects.py")
-
-with col3:
-    if st.button("🛠️\nSkills", use_container_width=True):
-        st.switch_page("pages/Skills.py")
-
-with col4:
-    if st.button("📩\nContact", use_container_width=True):
-        st.switch_page("pages/Contact.py")
-
-st.write("---")
+elif page == "Contact":
+    st.title("📞 Contact")
+    st.write("Email: your@email.com")
